@@ -5,7 +5,9 @@
 #include<string>
 #include<algorithm>
 #include<cctype>
-game::game():player1(std::make_unique<RandomStrategy>()), player2(std::make_unique < RandomStrategy>()){}
+game::game(strategy* s1, strategy* s2) {
+	player1 = s1,player2 = s2;
+}
 win operator>(choice p1,choice p2) {
 	if (p1 == p2) {
 		return win::tie;
