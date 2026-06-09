@@ -5,7 +5,7 @@
 class strategy {
 public:
 	virtual choice makechoice() { return choice::ROCK; }
-	virtual void gamestate(bool win,choice lastchoice) {}
+	virtual void gamestate(bool kwin,choice klastchoice) {}
 
 };
 class RandomStrategy :public strategy {
@@ -18,4 +18,14 @@ public:
 		: rng(std::random_device{}()), dist(0, 2) {
 	}
 	choice makechoice() override;
+};
+class WinningSrategy :public strategy {
+private:
+	bool win;
+	choice lastchoice;
+public:
+	WinningSrategy() : win(true), lastchoice(choice::PAPER){
+	}
+	choice makechoice() override;
+	void gamestate(bool kwin, choice klastchoice) override;
 };

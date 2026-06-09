@@ -13,22 +13,35 @@ win operator>(choice p1,choice p2) {
 		return win::tie;
 	}
 	if ((static_cast<int>(p1) + 1) % 3 == static_cast<int>(p2)) {
-		return win::p1win;
+		return win::p2win;
 	}
 	else {
-		return win::p2win;
+		return win::p1win;
 	}
 
 }
 void game::play() {
+	bool validInput=false;
+	choice c1=choice::PAPER;
 	std::string PlayerChoice;
-	std::cout << "Please enter your choice" << std::endl;
-	std::cin >> PlayerChoice;
-	std::transform(PlayerChoice.begin(), PlayerChoice.end(), PlayerChoice.begin(), [](unsigned char c) {
-		return std::toupper(c); });
-	choice c1 = StringtoChoice(PlayerChoice);
+		while (!validInput) {
+			validInput = true;
+			std::cout << "Please enter your choice" << std::endl;
+			std::cin >> PlayerChoice;
+			std::transform(PlayerChoice.begin(), PlayerChoice.end(), PlayerChoice.begin(), [](unsigned char c) {
+				return std::toupper(c); });
+			try {
+				c1=StringtoChoice(PlayerChoice);
+			}
+			catch (const std::invalid_argument& e) {
+				std::cout << e.what() << std::endl;
+				validInput = false;
+
+			}
+		}
 	choice c2 = player1->makechoice();
 	win w = c1 > c2;
+	player1->gamestate(static_cast<bool>(w), c2);
 	std::string WhoWin;
 	switch (w) {
 	case win::p1win:WhoWin = "you win!"; break;

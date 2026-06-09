@@ -1,6 +1,7 @@
 #pragma once
 #include<iostream>
 #include<string>
+#include<stdexcept>
 enum class choice {
 	ROCK, PAPER, SCISSORS
 };
@@ -19,4 +20,7 @@ inline choice StringtoChoice(std::string s) {
 	if (s == "ROCK")return choice::ROCK;
 	if (s == "PAPER") return choice::PAPER;
 	if (s == "SCISSORS") return choice::SCISSORS;
+	throw std::invalid_argument("Invalid input!Please enter rock, paper, or scissors.");
+	
+
 }
