@@ -21,7 +21,7 @@ int main() {
 	//		isRun = false;
 	//	}
 	//}
-	//std::cout << round << " roumds played:\nPlayer 1 won: " << std::count(g.scoreBoard.begin(), g.scoreBoard.end(), win::p1win) << "\nPlayer 2 won: " << std::count(g.scoreBoard.begin(), g.scoreBoard.end(), win::p2win) << "\ntie:" << std::count(g.scoreBoard.begin(), g.scoreBoard.end(), win::tie) << std::endl;
+	//std::cout << round << " roumds played:\nyou won: " << std::count(g.scoreBoard.begin(), g.scoreBoard.end(), win::p1win) << "\nyour opponent won: " << std::count(g.scoreBoard.begin(), g.scoreBoard.end(), win::p2win) << "\ntie:" << std::count(g.scoreBoard.begin(), g.scoreBoard.end(), win::tie) << std::endl;
 	while (isRun) {
 		g.scoreBoard.clear();
 		g.run(10000);
